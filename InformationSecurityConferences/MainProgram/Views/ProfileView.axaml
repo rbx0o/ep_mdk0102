@@ -1,0 +1,64 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MainProgram.Views.ProfileView"
+			 xmlns:vm="using:MainProgram.ViewModels"
+			 x:DataType="vm:ProfileViewModel">
+	<Grid RowDefinitions="50, *" ShowGridLines="False">
+		<Button Content="Назад"
+				Grid.Row="0"
+				HorizontalAlignment="Left"
+				VerticalContentAlignment="Center"
+				Margin="10, 0, 0, 0"
+				Command="{Binding GoBack}"/>
+		<TextBlock Grid.Row="0"
+				   Text="Личный профиль"
+				   HorizontalAlignment="Center"
+				   VerticalAlignment="Center"
+				   FontSize="24"/>
+		<Button Content="Выйти"
+				Grid.Row="0"
+				HorizontalAlignment="Right"
+				VerticalContentAlignment="Center"
+				Margin="0, 0, 10, 0"
+				Command="{Binding ToMainView}"/>
+
+		<StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10, 30, 10, 0" 
+					VerticalAlignment="Top" HorizontalAlignment="Stretch">
+			<Image Source="/Assets/images/persons/foto1.jpg"
+				   Width="200"
+				   Height="300"
+				   Stretch="UniformToFill"
+				   Margin="0, 0, 50, 0"/>
+			<Grid RowDefinitions="*, 50" ColumnDefinitions="Auto, *, Auto" HorizontalAlignment="Stretch">
+				<StackPanel Grid.Column="0" MinWidth="200" HorizontalAlignment="Center">
+					<TextBlock>ID пользователя</TextBlock>
+					<TextBox Text="{Binding CurrentUser.IdUser}" IsEnabled="False" Margin="0, 5, 0, 10"/>
+					<TextBlock>Email</TextBlock>
+					<TextBox Text="{Binding CurrentUser.Email}" Margin="0, 5, 0, 10"/>
+					<TextBlock>Пароль</TextBlock>
+					<TextBox Text="{Binding CurrentUser.Password}" Margin="0, 5, 0, 10"/>
+					<TextBlock>Роль</TextBlock>
+					<TextBox Text="{Binding CurrentUser.IdRoleNavigation.RoleName}" Margin="0, 5, 0, 10"/>
+				</StackPanel>
+				<StackPanel Grid.Column="2" MinWidth="200" HorizontalAlignment="Center">
+					<TextBlock>ID пользователя</TextBlock>
+					<TextBox Text="{Binding CurrentUser.IdUser}" IsEnabled="False" Margin="0, 5, 0, 10"/>
+					<TextBlock>Email</TextBlock>
+					<TextBox Text="{Binding CurrentUser.Email}" Margin="0, 5, 0, 10"/>
+					<TextBlock>Пароль</TextBlock>
+					<TextBox Text="{Binding CurrentUser.Password}" Margin="0, 5, 0, 10"/>
+					<TextBlock>Роль</TextBlock>
+					<TextBox Text="{Binding CurrentUser.IdRoleNavigation.RoleName}" Margin="0, 5, 0, 10"/>
+				</StackPanel>
+				<Button Content="Сохранить"
+						Grid.Row="1"
+						Grid.Column="0"
+						Grid.ColumnSpan="3"
+						HorizontalAlignment="Center"/>
+			</Grid>
+		</StackPanel>
+	</Grid>
+</UserControl>

@@ -1,0 +1,17 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MainProgram.Views.AuthView"
+	         xmlns:vm="using:MainProgram.ViewModels"
+	         x:DataType="vm:AuthViewModel">
+	<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="200">
+		<TextBox Watermark="Логин" Margin="0, 0, 0, 5" Text="{Binding Login}"/>
+		<TextBox Watermark="Пароль" Margin="0, 0, 0, 15" Text="{Binding Password}"/>
+		<Button HorizontalAlignment="Center" Width="100" Command="{Binding Auth}">
+			<TextBlock HorizontalAlignment="Center">Войти</TextBlock>
+		</Button>
+		<TextBlock Text="{Binding Message}" Foreground="Red" Margin="0, 20, 0, 0"/>
+	</StackPanel>
+</UserControl>
