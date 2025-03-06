@@ -13,7 +13,8 @@ namespace MainProgram.ViewModels
         public MainWindowViewModel()
         {
             Navigate = this;
-            currentViewModel = new MainViewModel();
+            if (AuthorizedUser.UserInstance.UserIsSaved()) currentViewModel = new MainMenuViewModel(AuthorizedUser.UserInstance.Data);
+            else currentViewModel = new MainViewModel();
         }
 
         public ViewModelBase CurrentViewModel { get => currentViewModel; set => this.RaiseAndSetIfChanged(ref currentViewModel, value); }
@@ -21,10 +22,7 @@ namespace MainProgram.ViewModels
 
         public void ToAuth() => CurrentViewModel = new AuthViewModel();
         public void ToMain() => CurrentViewModel = new MainViewModel();
-        public void ToJury(User CurrentUser) => CurrentViewModel = new JuryViewModel(CurrentUser);
-        public void ToMember(User CurrentUser) => CurrentViewModel = new MemberViewModel(CurrentUser);
-        public void ToModerator(User CurrentUser) => CurrentViewModel = new ModeratorViewModel(CurrentUser);
-        public void ToOrganizer(User CurrentUser) => CurrentViewModel = new OrganizerViewModel(CurrentUser);
+        public void ToMainMenu(User CurrentUser) => CurrentViewModel = new MainMenuViewModel(CurrentUser);
         public void ToProfile(User CurrentUser) => CurrentViewModel = new ProfileViewModel(CurrentUser);
 
     }

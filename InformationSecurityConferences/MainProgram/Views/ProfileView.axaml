@@ -22,7 +22,7 @@
 		<Button Content="Выйти"
 				Grid.Row="0"
 				HorizontalAlignment="Right"
-				Command="{Binding ToMainView}"
+				Command="{Binding Exit}"
 				Width="120"/>
 
 		<StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0, 30, 10, 0" 

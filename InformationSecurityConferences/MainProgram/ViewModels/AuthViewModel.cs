@@ -30,21 +30,8 @@ namespace MainProgram.ViewModels
 
             if (CurrentUser != null)
             {
-                switch (CurrentUser.IdRoleNavigation.RoleName)
-                {
-                    case "Участник":
-                        Navigate.ToMember(CurrentUser);
-                        break;
-                    case "Жюри":
-                        Navigate.ToJury(CurrentUser);
-                        break;
-                    case "Организатор":
-                        Navigate.ToOrganizer(CurrentUser);
-                        break;
-                    case "Модератор":
-                        Navigate.ToModerator(CurrentUser);
-                        break;
-                }
+                AuthorizedUser.UserInstance.SaveData(CurrentUser);
+                Navigate.ToMainMenu(CurrentUser);
             }
             else
             {

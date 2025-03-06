@@ -3,10 +3,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="MainProgram.Views.OrganizerView"
+             x:Class="MainProgram.Views.MainMenuView"
 			 xmlns:vm="using:MainProgram.ViewModels"
-			 x:DataType="vm:OrganizerViewModel">
-	
+			 x:DataType="vm:MainMenuViewModel">
+
 	<Grid RowDefinitions="60, *" ShowGridLines="False">
 		<Button Content="Профиль"
 				Grid.Row="0"
@@ -14,7 +14,7 @@
 				Command="{Binding ToProfileView}"
 				Width="120"/>
 		<TextBlock Grid.Row="0"
-				   Text="Организатор"
+				   Text="{Binding CurrentUser.IdRoleNavigation.RoleName}"
 				   HorizontalAlignment="Center"
 				   VerticalAlignment="Center"
 				   FontSize="24"
@@ -22,7 +22,7 @@
 		<Button Content="Выйти"
 				Grid.Row="0"
 				HorizontalAlignment="Right"
-				Command="{Binding ToMainView}"
+				Command="{Binding Exit}"
 				Width="120"/>
 	</Grid>
 </UserControl>

@@ -34,25 +34,12 @@ namespace MainProgram.ViewModels
 
         public void GoBack()
         {
-            switch (CurrentUser?.IdRoleNavigation.RoleName)
-            {
-                case "Участник":
-                    Navigate.ToMember(CurrentUser);
-                    break;
-                case "Жюри":
-                    Navigate.ToJury(CurrentUser);
-                    break;
-                case "Организатор":
-                    Navigate.ToOrganizer(CurrentUser);
-                    break;
-                case "Модератор":
-                    Navigate.ToModerator(CurrentUser);
-                    break;
-            }
+            Navigate.ToMainMenu(CurrentUser);
         }
 
-        public void ToMainView()
+        public void Exit()
         {
+            AuthorizedUser.UserInstance.DeleteUser();
             Navigate.ToMain();
         }
     }

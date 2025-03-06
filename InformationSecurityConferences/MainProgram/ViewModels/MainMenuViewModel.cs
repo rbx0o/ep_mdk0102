@@ -4,19 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MainProgram.Models;
-using MainProgram.Views;
 using ReactiveUI;
 using static MainProgram.ViewModels.MainWindowViewModel;
 
 namespace MainProgram.ViewModels
 {
-    public class ModeratorViewModel : ViewModelBase
+    public class MainMenuViewModel : ViewModelBase
     {
         User currentUser;
 
         public User CurrentUser { get => currentUser; set => this.RaiseAndSetIfChanged(ref currentUser, value); }
 
-        public ModeratorViewModel(User CurrentUser)
+        public MainMenuViewModel(User CurrentUser)
         {
             this.CurrentUser = CurrentUser;
         }
@@ -26,8 +25,9 @@ namespace MainProgram.ViewModels
             Navigate.ToProfile(CurrentUser);
         }
 
-        public void ToMainView()
+        public void Exit()
         {
+            AuthorizedUser.UserInstance.DeleteUser();
             Navigate.ToMain();
         }
     }

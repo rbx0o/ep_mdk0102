@@ -1,13 +1,12 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
-using MainProgram.ViewModels;
 
 namespace MainProgram.Views;
 
-public partial class OrganizerView : UserControl
+public partial class MainMenuView : UserControl
 {
-    public OrganizerView()
+    public MainMenuView()
     {
         InitializeComponent();
     }
