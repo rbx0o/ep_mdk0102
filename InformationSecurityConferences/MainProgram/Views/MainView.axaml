@@ -7,7 +7,7 @@
 			 xmlns:vm="using:MainProgram.ViewModels"
 			 x:DataType="vm:MainViewModel">
 
-	<Grid RowDefinitions="50, 100, *" ShowGridLines="False">
+	<Grid RowDefinitions="60, 100, *" ShowGridLines="False">
 		<TextBlock Grid.Row="0" 
 				   Text="Главный экран" 
 				   HorizontalAlignment="Center" 
@@ -16,16 +16,16 @@
 		<Button Content="Авторизация"
 				Grid.Row="0"
 				HorizontalAlignment="Right"
-				VerticalContentAlignment="Stretch"
-				Margin="0, 0, 15, 0"
-				Command="{Binding ToAuthView}"/>
-		<StackPanel Orientation="Horizontal" Grid.Row="1" Margin="15, 0, 15, 0">			
+				Command="{Binding ToAuthView}"
+				Classes="Primary"
+				Width="120"/>
+		<StackPanel Orientation="Horizontal" Grid.Row="1" Margin="15, 0, 15, 0">	
 			<StackPanel VerticalAlignment="Center">
 				<TextBlock Grid.Row="1"
 					   Text="Сортировать по дате:"
 					   VerticalAlignment="Center"/>
-				<RadioButton Command="{Binding SortByDate}" CommandParameter="1">По возрастанию</RadioButton>
-				<RadioButton Command="{Binding SortByDate}" CommandParameter="2">По убыванию</RadioButton>
+				<RadioButton Command="{Binding SortByDate}" CommandParameter="1" Classes="RadioButton">По возрастанию</RadioButton>
+				<RadioButton Command="{Binding SortByDate}" CommandParameter="2" Classes="RadioButton">По убыванию</RadioButton>
 			</StackPanel>
 		</StackPanel>
 		<ScrollViewer Grid.Row="2">
@@ -36,7 +36,8 @@
 								BorderBrush="Black"
 								CornerRadius="5"
 								Padding="10"
-								Margin="0, 0, 0, 5">
+								Margin="0, 0, 0, 5"
+								Classes="Card">
 							<StackPanel Orientation="Horizontal">
 								<Image Source="/Assets/images/events/14.png"
 									   Stretch="UniformToFill"

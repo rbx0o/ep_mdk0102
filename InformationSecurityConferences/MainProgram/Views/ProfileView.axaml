@@ -7,13 +7,12 @@
 			 xmlns:vm="using:MainProgram.ViewModels"
 			 x:DataType="vm:ProfileViewModel">
 
-	<Grid RowDefinitions="50, *" ShowGridLines="False">
+	<Grid RowDefinitions="60, *" ShowGridLines="False">
 		<Button Content="Назад"
 				Grid.Row="0"
 				HorizontalAlignment="Left"
-				VerticalContentAlignment="Center"
-				Margin="10, 0, 0, 0"
-				Command="{Binding GoBack}"/>
+				Command="{Binding GoBack}"
+				Width="120"/>
 		<TextBlock Grid.Row="0"
 				   Text="Личный профиль"
 				   HorizontalAlignment="Center"
@@ -22,18 +21,17 @@
 		<Button Content="Выйти"
 				Grid.Row="0"
 				HorizontalAlignment="Right"
-				VerticalContentAlignment="Center"
-				Margin="0, 0, 10, 0"
-				Command="{Binding ToMainView}"/>
+				Command="{Binding ToMainView}"
+				Width="120"/>
 
-		<StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10, 30, 10, 0" 
+		<StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0, 30, 10, 0" 
 					VerticalAlignment="Top" HorizontalAlignment="Stretch">
 			<Image Source="/Assets/images/persons/foto1.jpg"
 				   Width="250"
 				   Height="370"
 				   Stretch="UniformToFill"
 				   Margin="0, 0, 50, 0"/>
-			<Grid RowDefinitions="*, 50" ColumnDefinitions="*, 50, *">
+			<Grid RowDefinitions="*, 80" ColumnDefinitions="*, 50, *">
 				<StackPanel MinWidth="250" HorizontalAlignment="Center" 
 							Grid.Row="0" Grid.Column="0">
 					<TextBlock>ID пользователя</TextBlock>
@@ -71,9 +69,10 @@
 						</ComboBox.ItemTemplate>
 					</ComboBox>
 				</StackPanel>
-				<Button Content="Сохранить" HorizontalAlignment="Center"
-						Margin="0, 20, 0, 0" Command="{Binding SaveChanges}"
-						Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"/>
+				<Button Content="Сохранить" HorizontalAlignment="Center" VerticalAlignment="Bottom"
+						Command="{Binding SaveChanges}" Height="50" Width="120"
+						Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+						Classes="Primary"/>
 			</Grid>
 		</StackPanel>
 	</Grid>

@@ -6,13 +6,12 @@
              x:Class="MainProgram.Views.MemberView"
 			 xmlns:vm="using:MainProgram.ViewModels"
 			 x:DataType="vm:MemberViewModel">
-	<Grid RowDefinitions="50, *" ShowGridLines="False">
+	<Grid RowDefinitions="60, *" ShowGridLines="False">
 		<Button Content="Профиль"
 				Grid.Row="0"
 				HorizontalAlignment="Left"
-				VerticalContentAlignment="Center"
-				Margin="10, 0, 0, 0"
-				Command="{Binding ToProfileView}"/>
+				Command="{Binding ToProfileView}"
+				Width="120"/>
 		<TextBlock Grid.Row="0"
 				   Text="Участник"
 				   HorizontalAlignment="Center"
@@ -21,9 +20,7 @@
 		<Button Content="Выйти"
 				Grid.Row="0"
 				HorizontalAlignment="Right"
-				VerticalContentAlignment="Center"
-				Margin="0, 0, 10, 0"
-				Command="{Binding ToMainView}"/>
-		<TextBlock Grid.Row="1" Text="{Binding CurrentUser.Email}" Foreground="Black" FontSize="24"/>
+				Command="{Binding ToMainView}"
+				Width="120"/>
 	</Grid>
 </UserControl>

@@ -9,9 +9,9 @@
 	<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="200">
 		<TextBox Watermark="Логин" Margin="0, 0, 0, 5" Text="{Binding Login}"/>
 		<TextBox Watermark="Пароль" Margin="0, 0, 0, 15" Text="{Binding Password}"/>
-		<Button HorizontalAlignment="Center" Width="100" Command="{Binding Auth}">
-			<TextBlock HorizontalAlignment="Center">Войти</TextBlock>
-		</Button>
+		<Button HorizontalAlignment="Center" Width="100" 
+				Command="{Binding Auth}" Classes="Primary"
+				Content="Войти"/>
 		<TextBlock Text="{Binding Message}" Foreground="Red" Margin="0, 20, 0, 0"/>
 	</StackPanel>
 </UserControl>

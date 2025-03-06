@@ -11,7 +11,8 @@
     </Application.DataTemplates>
   
     <Application.Styles>
-        <FluentTheme />
+		<StyleInclude Source="avares://Citrus.Avalonia/Citrus.xaml"/>
+        <!--<StyleInclude Source="avares://Citrus.Avalonia/Candy.xaml"/>-->
     </Application.Styles>
 
 	<Application.Resources>

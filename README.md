@@ -12,7 +12,7 @@
 
 ✅ [День 4 - Создание десктопного приложения](/InformationSecurityConferences)
 
-❌ День 5 - ...
+✅ [День 5 - Создание десктопного приложения](/InformationSecurityConferences)
 
 ❌ День 6 - ...
 
