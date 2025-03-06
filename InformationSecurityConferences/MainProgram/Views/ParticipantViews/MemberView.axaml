@@ -16,7 +16,8 @@
 				   Text="Участник"
 				   HorizontalAlignment="Center"
 				   VerticalAlignment="Center"
-				   FontSize="24"/>
+				   FontSize="24"
+				   Classes="Heading"/>
 		<Button Content="Выйти"
 				Grid.Row="0"
 				HorizontalAlignment="Right"

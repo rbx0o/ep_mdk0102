@@ -17,7 +17,8 @@
 				   Text="Личный профиль"
 				   HorizontalAlignment="Center"
 				   VerticalAlignment="Center"
-				   FontSize="24"/>
+				   FontSize="24"
+				   Classes="Heading"/>
 		<Button Content="Выйти"
 				Grid.Row="0"
 				HorizontalAlignment="Right"
@@ -26,7 +27,7 @@
 
 		<StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0, 30, 10, 0" 
 					VerticalAlignment="Top" HorizontalAlignment="Stretch">
-			<Image Source="/Assets/images/persons/foto1.jpg"
+			<Image Source="{Binding CurrentUser.Person.PersonImage, Converter = {StaticResource ImageConv}, ConverterParameter = persons}"
 				   Width="250"
 				   Height="370"
 				   Stretch="UniformToFill"

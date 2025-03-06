@@ -12,42 +12,45 @@
 				   Text="Главный экран" 
 				   HorizontalAlignment="Center" 
 				   VerticalAlignment="Center"
-				   FontSize="24"/>
+				   FontSize="24"
+				   Classes="Heading"/>
 		<Button Content="Авторизация"
 				Grid.Row="0"
 				HorizontalAlignment="Right"
 				Command="{Binding ToAuthView}"
 				Classes="Primary"
 				Width="120"/>
-		<StackPanel Orientation="Horizontal" Grid.Row="1" Margin="15, 0, 15, 0">	
-			<StackPanel VerticalAlignment="Center">
-				<TextBlock Grid.Row="1"
-					   Text="Сортировать по дате:"
-					   VerticalAlignment="Center"/>
-				<RadioButton Command="{Binding SortByDate}" CommandParameter="1" Classes="RadioButton">По возрастанию</RadioButton>
-				<RadioButton Command="{Binding SortByDate}" CommandParameter="2" Classes="RadioButton">По убыванию</RadioButton>
+		<StackPanel Orientation="Horizontal" Grid.Row="1" Margin="15, 0, 15, 0">			
+			<StackPanel VerticalAlignment="Center" Margin="0, 0, 20, 0">
+				<TextBlock Text="Сортировать по дате:"
+						   VerticalAlignment="Center"
+						   Classes="Caption"/>
+				<RadioButton Command="{Binding SortByDate}" CommandParameter="1" Content="По возрастанию"
+							 Classes="RadioButton" Margin="0, 5, 0, 5"/>
+				<RadioButton Command="{Binding SortByDate}" CommandParameter="2" Content="По убыванию"
+							 Classes="RadioButton"/>
 			</StackPanel>
 		</StackPanel>
 		<ScrollViewer Grid.Row="2">
 			<ItemsControl ItemsSource="{Binding ListEvents}" Margin="15, 0, 15, 0">
 				<ItemsControl.ItemTemplate>
 					<DataTemplate>
-						<Border BorderThickness="1"
-								BorderBrush="Black"
-								CornerRadius="5"
-								Padding="10"
-								Margin="0, 0, 0, 5"
+						<Border Margin="0, 0, 0, 5"
 								Classes="Card">
 							<StackPanel Orientation="Horizontal">
-								<Image Source="/Assets/images/events/14.png"
+								<Image Source="{Binding EventImage, Converter = {StaticResource ImageConv}, ConverterParameter = event}"
 									   Stretch="UniformToFill"
-									   Width="50"
-									   Height="50"/>
+									   Width="70"
+									   Height="70">
+									<Image.Clip>
+										<RectangleGeometry Rect="0,0,70,70" RadiusX="5" RadiusY="5"/>
+									</Image.Clip>
+								</Image>
 								<StackPanel Orientation="Vertical"
 											VerticalAlignment="Stretch"
 											Margin="10, 0, 0, 0">
-									<TextBlock Text="{Binding EventName}"/>
-									<TextBlock Text="{Binding EventDate}"/>
+									<TextBlock Text="{Binding EventName}" Classes="Heading"/>
+									<TextBlock Text="{Binding EventDate}" Classes="Accent"/>
 								</StackPanel>
 							</StackPanel>
 						</Border>

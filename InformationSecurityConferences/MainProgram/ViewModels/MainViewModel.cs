@@ -13,6 +13,8 @@ namespace MainProgram.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+        string searchText;
+
         List<Event> listEvents;
 
         public List<Event> ListEvents
