@@ -8,7 +8,13 @@
 	         x:DataType="vm:AuthViewModel">
 	<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="200">
 		<TextBox Watermark="Логин" Margin="0, 0, 0, 5" Text="{Binding Login}"/>
-		<TextBox Watermark="Пароль" Margin="0, 0, 0, 15" Text="{Binding Password}"/>
+		<TextBox Watermark="Пароль" Margin="0, 0, 0, 5" Text="{Binding Password}"/>
+		<Image Width="200" Height="120" Source="{Binding CaptchaImage}">
+			<Image.Clip>
+				<RectangleGeometry Rect="0, 0, 200, 120" RadiusX="5" RadiusY="5"/>
+			</Image.Clip>
+		</Image>
+		<TextBox Watermark="Captcha" Margin="0, 0, 0, 15" Text="{Binding InputCaptcha}"/>
 		<Button HorizontalAlignment="Center" Width="100" 
 				Command="{Binding Auth}" Classes="Primary"
 				Content="Войти"/>
