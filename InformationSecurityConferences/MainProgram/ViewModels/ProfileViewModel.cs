@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MainProgram.Models;
-using MainProgram.Views;
+using Microsoft.EntityFrameworkCore;
 using ReactiveUI;
 using static MainProgram.ViewModels.MainWindowViewModel;
 
@@ -12,18 +9,32 @@ namespace MainProgram.ViewModels
 {
     public class ProfileViewModel : ViewModelBase
     {
-        User currentUser;
+        User? currentUser;
 
-        public User CurrentUser { get => currentUser; set => this.RaiseAndSetIfChanged(ref currentUser, value); }
+        public User? CurrentUser { get => currentUser; set => this.RaiseAndSetIfChanged(ref currentUser, value); }
+        public List<Gender> GendersList => db.Genders.ToList();
+
 
         public ProfileViewModel(User CurrentUser)
         {
-            this.CurrentUser = CurrentUser;
+            this.CurrentUser = db.Users
+                .Include(x => x.IdRoleNavigation)
+                .Include(x => x.Person)
+                .Include(x => x.Person.IdGenderNavigation)
+                .FirstOrDefault(x => x.IdUser == CurrentUser.IdUser);
+
+            GendersList[0].GenderName = "Мужской";
+            GendersList[1].GenderName = "Женский";
+        }
+
+        public void SaveChanges()
+        {
+            db.SaveChanges();
         }
 
         public void GoBack()
         {
-            switch (CurrentUser.IdRoleNavigation.RoleName)
+            switch (CurrentUser?.IdRoleNavigation.RoleName)
             {
                 case "Участник":
                     Navigate.ToMember(CurrentUser);

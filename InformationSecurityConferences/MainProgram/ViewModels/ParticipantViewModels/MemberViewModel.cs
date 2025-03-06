@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MainProgram.Views;
-using MainProgram.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using MainProgram.Models;
 using ReactiveUI;
 using static MainProgram.ViewModels.MainWindowViewModel;
 

@@ -17,19 +17,14 @@ namespace MainProgram.ViewModels
         string login = "";
         string password = "";
         string message = "";
-        User currentUser = new();
+        User? currentUser = new();
 
         public string Login  { get => login; set => this.RaiseAndSetIfChanged(ref login, value); }
         public string Password { get => password; set => this.RaiseAndSetIfChanged(ref password, value); }
         public string Message { get => message; set => this.RaiseAndSetIfChanged(ref message, value); }
-        public User CurrentUser { get => currentUser; set => this.RaiseAndSetIfChanged(ref currentUser, value); }
+        public User? CurrentUser { get => currentUser; set => this.RaiseAndSetIfChanged(ref currentUser, value); }
 
-        public AuthViewModel()
-        {
-            
-        }
-
-        public void Auth()
+         public void Auth()
         {
             CurrentUser = db.Users.Include(x => x.IdRoleNavigation).FirstOrDefault(x => x.Email == Login && x.Password == Password);
 
