@@ -3,24 +3,28 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="MainProgram.Views.MainView"
+             x:Class="MainProgram.Views.EventsView"
 			 xmlns:vm="using:MainProgram.ViewModels"
-			 x:DataType="vm:MainViewModel">
-
+			 x:DataType="vm:EventsViewModel">
+	
 	<Grid RowDefinitions="60, 100, *" ShowGridLines="False">
-		<TextBlock Grid.Row="0" 
-				   Text="Главный экран" 
-				   HorizontalAlignment="Center" 
+		<Button Content="Назад"
+				Grid.Row="0"
+				HorizontalAlignment="Left"
+				Command="{Binding ToMainMenuView}"
+				Width="120"/>
+		<TextBlock Grid.Row="0"
+				   Text="Мероприятия"
+				   HorizontalAlignment="Center"
 				   VerticalAlignment="Center"
 				   FontSize="24"
 				   Classes="Heading"/>
-		<Button Content="Авторизация"
+		<Button Content="Выйти"
 				Grid.Row="0"
 				HorizontalAlignment="Right"
-				Command="{Binding ToAuthView}"
-				Classes="Primary"
+				Command="{Binding Exit}"
 				Width="120"/>
-		<StackPanel Orientation="Horizontal" Grid.Row="1" Margin="15, 0, 15, 0">			
+		<StackPanel Orientation="Horizontal" Grid.Row="1" Margin="15, 0, 15, 0">
 			<StackPanel VerticalAlignment="Center" Margin="0, 0, 20, 0">
 				<TextBlock Text="Сортировать по дате:"
 						   VerticalAlignment="Center"
@@ -58,5 +62,5 @@
 				</ItemsControl.ItemTemplate>
 			</ItemsControl>
 		</ScrollViewer>
-	</Grid>	
+	</Grid>
 </UserControl>

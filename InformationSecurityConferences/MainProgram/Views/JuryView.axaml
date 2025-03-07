@@ -1,0 +1,64 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MainProgram.Views.JuryView"
+			 xmlns:vm="using:MainProgram.ViewModels"
+			 x:DataType="vm:JuryViewModel">
+
+	<Grid RowDefinitions="60, *" ShowGridLines="False">
+		<Button Content="Назад"
+				Grid.Row="0"
+				HorizontalAlignment="Left"
+				Command="{Binding ToMainMenuView}"
+				Width="120"/>
+		<TextBlock Grid.Row="0"
+				   Text="Жюри"
+				   HorizontalAlignment="Center"
+				   VerticalAlignment="Center"
+				   FontSize="24"
+				   Classes="Heading"/>
+		<Button Content="Выйти"
+				Grid.Row="0"
+				HorizontalAlignment="Right"
+				Command="{Binding Exit}"
+				Width="120"/>
+		<ScrollViewer Grid.Row="1" Margin="0, 15, 0, 0">
+			<ItemsControl ItemsSource="{Binding ListJury}">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<Border Margin="0, 0, 0, 5"
+								Classes="Card">
+							<StackPanel Orientation="Horizontal">
+								<Image Source="{Binding PersonImage, Converter = {StaticResource ImageConv}, ConverterParameter = persons}"
+									   Stretch="UniformToFill"
+									   Width="70"
+									   Height="70">
+									<Image.Clip>
+										<RectangleGeometry Rect="0,0,70,70" RadiusX="5" RadiusY="5"/>
+									</Image.Clip>
+								</Image>
+								<StackPanel Orientation="Vertical"
+											VerticalAlignment="Stretch"
+											Margin="10, 0, 0, 0">
+									<TextBlock Classes="Heading">
+										<TextBlock.Text>
+											<MultiBinding StringFormat="{}{0} {1} {2}.">
+												<Binding Path="PersonLastName"/>
+												<Binding Path="PersonFirstName"/>
+												<Binding Path="PersonPatronymic"/>
+											</MultiBinding>
+										</TextBlock.Text>
+									</TextBlock>
+									<TextBlock Text="{Binding IdUserNavigation.IdRoleNavigation.RoleName, StringFormat = Роль: {0}}"
+											   Classes="Accent"/>
+								</StackPanel>
+							</StackPanel>
+						</Border>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</ScrollViewer>
+	</Grid>
+</UserControl>

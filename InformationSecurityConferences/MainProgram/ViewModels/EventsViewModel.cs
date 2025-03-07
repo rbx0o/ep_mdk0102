@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MainProgram.Models;
-using MainProgram.Views;
-using Microsoft.EntityFrameworkCore;
 using ReactiveUI;
 using static MainProgram.ViewModels.MainWindowViewModel;
 
 namespace MainProgram.ViewModels
 {
-    public class MainViewModel : ViewModelBase
+    public class EventsViewModel : ViewModelBase
     {
         List<Event> listEvents;
 
@@ -21,14 +16,17 @@ namespace MainProgram.ViewModels
             set => this.RaiseAndSetIfChanged(ref listEvents, value);
         }
 
-        public MainViewModel()
+        public EventsViewModel()
         {
             listEvents = db.Events.ToList();
         }
 
-        public void ToAuthView()
+        public void ToMainMenuView() => Navigate.ToMainMenu(AuthorizedUser.UserInstance.Data);
+
+        public void Exit()
         {
-            Navigate.ToAuth();
+            AuthorizedUser.UserInstance.DeleteUser();
+            Navigate.ToMain();
         }
 
         public void SortByDate(int sortBy)

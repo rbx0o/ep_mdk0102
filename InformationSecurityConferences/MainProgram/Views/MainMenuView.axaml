@@ -7,7 +7,7 @@
 			 xmlns:vm="using:MainProgram.ViewModels"
 			 x:DataType="vm:MainMenuViewModel">
 
-	<Grid RowDefinitions="60, *" ShowGridLines="False">
+	<Grid RowDefinitions="60, 120, *" ShowGridLines="False">
 		<Button Content="Профиль"
 				Grid.Row="0"
 				HorizontalAlignment="Left"
@@ -24,5 +24,53 @@
 				HorizontalAlignment="Right"
 				Command="{Binding Exit}"
 				Width="120"/>
+		<StackPanel Grid.Row="1">
+			<TextBlock Text="{Binding Greeting}"
+					   HorizontalAlignment="Center"
+					   FontSize="18"
+					   Classes="Caption"
+					   Margin="0, 30, 0, 0"/>
+			<TextBlock Text="{Binding FullName}"
+					   HorizontalAlignment="Center"
+					   FontSize="18"
+					   Classes="Heading"
+					   Margin="0, 0, 0, 40"/>
+		</StackPanel>
+		<StackPanel Grid.Row="2" Orientation="Horizontal"
+					VerticalAlignment="Top" HorizontalAlignment="Stretch">
+			<Image Source="{Binding CurrentUser.Person.PersonImage, Converter = {StaticResource ImageConv}, ConverterParameter = persons}"
+				   Width="250"
+				   Height="370"
+				   Stretch="UniformToFill"
+				   Margin="0, 15, 50, 0">
+				<Image.Clip>
+					<RectangleGeometry Rect="0, 0, 250, 370" RadiusX="5" RadiusY="5"/>
+				</Image.Clip>
+			</Image>
+			<Grid RowDefinitions="*, *, *, *" Margin="0, 15, 0, 0">
+				<Button Grid.Row="0" Content="Мероприятия"
+						Classes="Primary" HorizontalAlignment="Center"
+						Height="60" Width="300"
+						Command="{Binding ToEventsView}"/>
+				<Button Grid.Row="1" Content="Участники"
+						Classes="Primary" HorizontalAlignment="Center"
+						Height="60" Width="300"
+						IsEnabled="{Binding IsVisibleUsersView}"
+						IsVisible="{Binding IsVisibleUsersView}"
+						Command="{Binding ToUsersView}"/>
+				<Button Grid.Row="2" Content="Жюри"
+						Classes="Primary" HorizontalAlignment="Center"
+						Height="60" Width="300"
+						IsEnabled="{Binding IsVisibleJuryView}"
+						IsVisible="{Binding IsVisibleJuryView}"
+						Command="{Binding ToJuryView}"/>
+				<Button Grid.Row="3" Content="Регистрация жюри/модератора"
+						Classes="Primary" HorizontalAlignment="Center"
+						Height="60" Width="300"
+						IsEnabled="{Binding IsVisibleRegistrationView}"
+						IsVisible="{Binding IsVisibleRegistrationView}"
+						Command="{Binding ToRegistrationView}"/>
+			</Grid>
+		</StackPanel>
 	</Grid>
 </UserControl>

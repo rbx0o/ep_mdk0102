@@ -31,7 +31,11 @@
 				   Width="250"
 				   Height="370"
 				   Stretch="UniformToFill"
-				   Margin="0, 0, 50, 0"/>
+				   Margin="0, 0, 50, 0">
+				<Image.Clip>
+					<RectangleGeometry Rect="0, 0, 250, 370" RadiusX="5" RadiusY="5"/>
+				</Image.Clip>
+			</Image>
 			<Grid RowDefinitions="*, 80" ColumnDefinitions="*, 50, *">
 				<StackPanel MinWidth="250" HorizontalAlignment="Center" 
 							Grid.Row="0" Grid.Column="0">

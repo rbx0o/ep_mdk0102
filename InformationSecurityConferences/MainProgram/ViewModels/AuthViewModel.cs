@@ -70,7 +70,11 @@ namespace MainProgram.ViewModels
                 return;
             }
 
-            CurrentUser = db.Users.Include(x => x.IdRoleNavigation).FirstOrDefault(x => x.Email == Login && x.Password == Password);
+            CurrentUser = db.Users
+                .Include(x => x.IdRoleNavigation)
+                .Include(x => x.Person)
+                .Include(x => x.Person.IdGenderNavigation)
+                .FirstOrDefault(x => x.Email == Login && x.Password == Password);
 
             if (CurrentUser != null)
             {
