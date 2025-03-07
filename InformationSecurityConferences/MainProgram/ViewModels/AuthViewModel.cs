@@ -13,6 +13,8 @@ using Avalonia.Media.Imaging;
 using Avalonia.Media.TextFormatting;
 using Avalonia.Media;
 using Avalonia;
+using System.Diagnostics.Metrics;
+using Tmds.DBus.Protocol;
 
 namespace MainProgram.ViewModels
 {
@@ -27,6 +29,7 @@ namespace MainProgram.ViewModels
         string captchaString;
         string inputCaptcha = "";
         int countTry = 3;
+        bool authButtonIsEnabled = true;
 
         public string Login  { get => login; set => this.RaiseAndSetIfChanged(ref login, value); }
         public string Password { get => password; set => this.RaiseAndSetIfChanged(ref password, value); }
@@ -36,6 +39,7 @@ namespace MainProgram.ViewModels
         public string CaptchaString { get => captchaString; set => this.RaiseAndSetIfChanged(ref captchaString, value); }
         public string InputCaptcha { get => inputCaptcha; set => this.RaiseAndSetIfChanged(ref inputCaptcha, value); }
         public int CountTry { get => countTry; set => this.RaiseAndSetIfChanged(ref countTry, value); }
+        public bool AuthButtonIsEnabled { get => authButtonIsEnabled; set => this.RaiseAndSetIfChanged(ref authButtonIsEnabled, value); }
 
         public AuthViewModel()
         {
@@ -43,8 +47,21 @@ namespace MainProgram.ViewModels
             CaptchaImage = GenerateCaptchaImage(CaptchaString);
         }
 
-        public void Auth()
+        public async void Auth()
         {
+            if (CountTry == 1)
+            {
+                AuthButtonIsEnabled = false;
+                for (int i = 10; i >= 0; i--)
+                {
+                    await Task.Delay(1000);
+                    Message = $"Повторите через: {i}";
+                }
+                Message = "";
+                CountTry = 3;
+                AuthButtonIsEnabled = true;
+                return;
+            }
             if (InputCaptcha != CaptchaString)
             {
                 Message = $"Неверно введена капча.\nОсталось: {--CountTry} попыток";
@@ -62,7 +79,8 @@ namespace MainProgram.ViewModels
             }
             else
             {
-                Message = "Неверный логин или пароль";
+                Message = $"Неверный логин или пароль.\nОсталось: {--CountTry} попыток";
+                CountTry = 3;
             }
         }
 
@@ -84,7 +102,7 @@ namespace MainProgram.ViewModels
 
                 for (int i = 0; i < 30; i++)
                 {
-                    ctx.DrawLine(new Pen(Brushes.Gray, 1.5),
+                    ctx.DrawLine(new Pen(new SolidColorBrush(Color.FromRgb(Convert.ToByte(random.Next(256)), Convert.ToByte(random.Next(255)), Convert.ToByte(random.Next(255)))), 1.5),
                         new Point(random.Next(width), random.Next(height)),
                         new Point(random.Next(width), random.Next(height)));
                 }
