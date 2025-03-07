@@ -32,10 +32,7 @@ namespace MainProgram.ViewModels
             db.SaveChanges();
         }
 
-        public void GoBack()
-        {
-            Navigate.ToMainMenu(CurrentUser);
-        }
+        public void GoBack() => Navigate.ToMainMenu(CurrentUser);
 
         public void Exit()
         {

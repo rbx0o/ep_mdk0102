@@ -1,0 +1,119 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="650"
+             x:Class="MainProgram.Views.RegistrationView"
+			 xmlns:vm="using:MainProgram.ViewModels"
+			 x:DataType="vm:RegistrationViewModel">
+
+	<Grid RowDefinitions="60, *" ShowGridLines="False">
+		<Button Content="Назад"
+				Grid.Row="0"
+				HorizontalAlignment="Left"
+				Command="{Binding GoBack}"
+				Width="120"/>
+		<TextBlock Grid.Row="0"
+				   Text="Регистрация жюри/модератора"
+				   HorizontalAlignment="Center"
+				   VerticalAlignment="Center"
+				   FontSize="24"
+				   Classes="Heading"/>
+		<Button Content="Выйти"
+				Grid.Row="0"
+				HorizontalAlignment="Right"
+				Command="{Binding Exit}"
+				Width="120"/>
+
+		<StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0, 30, 10, 0"
+					VerticalAlignment="Top" HorizontalAlignment="Stretch">
+			<StackPanel Orientation="Vertical">
+				<Image Source="{Binding SelectedImage}"
+				   Width="250"
+				   Height="370"
+				   Stretch="UniformToFill"
+				   Margin="0, 0, 50, 0">
+					<Image.Clip>
+						<RectangleGeometry Rect="0, 0, 250, 370" RadiusX="5" RadiusY="5"/>
+					</Image.Clip>
+				</Image>
+				<Button Content="Загрузить изображение" HorizontalAlignment="Center"
+						Command="{Binding LoadImage}" Height="50" Width="240"
+						Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+						Margin="0, 20, 50, 0" Classes="Primary"/>
+			</StackPanel>
+			<Grid RowDefinitions="*, 80, 30" ColumnDefinitions="*, 50, *">
+				<StackPanel MinWidth="300" HorizontalAlignment="Center"
+							Grid.Row="0" Grid.Column="0">
+					<TextBlock>ID пользователя</TextBlock>
+					<TextBox Text="{Binding RegistrationId}" IsEnabled="False" Margin="0, 5, 0, 10"/>
+					<TextBlock>Email</TextBlock>
+					<TextBox Text="{Binding Email}" Margin="0, 5, 0, 10"/>
+					<TextBlock>Пароль</TextBlock>
+					<TextBox Text="{Binding Password}" Margin="0, 5, 0, 10"/>
+					<TextBlock>Повторите пароль</TextBlock>
+					<TextBox Text="{Binding RePassword}" Margin="0, 5, 0, 10"/>
+					<TextBlock>Роль</TextBlock>
+					<ComboBox ItemsSource="{Binding Roles}"
+							  SelectedItem="{Binding SelectedRole}"
+							  Margin="0, 5, 0, 10"
+							  HorizontalAlignment="Stretch">
+						<ComboBox.ItemTemplate>
+							<DataTemplate>
+								<TextBlock Text="{Binding RoleName}"/>
+							</DataTemplate>
+						</ComboBox.ItemTemplate>
+					</ComboBox>
+				</StackPanel>
+				<StackPanel MinWidth="300" HorizontalAlignment="Center"
+							Grid.Row="0" Grid.Column="2">
+					<TextBlock>ФИО</TextBlock>
+					<TextBox Text="{Binding FullName}" Margin="0, 5, 0, 10"/>
+					<TextBlock>Номер телефона</TextBlock>
+					<MaskedTextBox Text="{Binding Phone, Converter = {StaticResource PhoneNumberConv}}"
+								   Mask="+7(000)000-00-00" Margin="0, 5, 0, 10"/>
+					<TextBlock>Направление</TextBlock>
+					<ComboBox ItemsSource="{Binding Directions}"
+							  SelectedItem="{Binding SelectedDirection}"
+							  Margin="0, 5, 0, 10"
+							  HorizontalAlignment="Stretch">
+						<ComboBox.ItemTemplate>
+							<DataTemplate>
+								<TextBlock Text="{Binding DirectionName}"/>
+							</DataTemplate>
+						</ComboBox.ItemTemplate>
+					</ComboBox>
+					<TextBlock>Мероприятие</TextBlock>
+					<ComboBox ItemsSource="{Binding Events}"
+							  SelectedItem="{Binding SelectedEvent}"
+							  Margin="0, 5, 0, 10"
+							  HorizontalAlignment="Stretch">
+						<ComboBox.ItemTemplate>
+							<DataTemplate>
+								<TextBlock Text="{Binding EventName}"/>
+							</DataTemplate>
+						</ComboBox.ItemTemplate>
+					</ComboBox>
+					<TextBlock>Пол</TextBlock>
+					<ComboBox ItemsSource="{Binding Genders}"
+							  SelectedItem="{Binding SelectedGender}"
+							  Margin="0, 5, 0, 10"
+							  HorizontalAlignment="Stretch">
+						<ComboBox.ItemTemplate>
+							<DataTemplate>
+								<TextBlock Text="{Binding GenderName}"/>
+							</DataTemplate>
+						</ComboBox.ItemTemplate>
+					</ComboBox>
+				</StackPanel>
+				<Button Content="Регистрация" HorizontalAlignment="Center" VerticalAlignment="Bottom"
+						Command="{Binding Registration}" Height="50" Width="120"
+						Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+						Classes="Primary"/>
+				<TextBlock Text="{Binding Message}" Foreground="{Binding MessageColor}"
+						   HorizontalAlignment="Center" VerticalAlignment="Bottom"
+						   Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"/>
+			</Grid>
+		</StackPanel>
+	</Grid>
+</UserControl>
